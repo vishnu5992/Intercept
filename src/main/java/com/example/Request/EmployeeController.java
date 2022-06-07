@@ -25,6 +25,7 @@ public class EmployeeController {
 		System.out.println(addemp.getId());
 		System.out.println(addemp.getName());
 		System.out.println(addemp.getRole());
+		System.out.println(addemp);
 		return rr.save(addemp);
 	}
   
@@ -52,10 +53,10 @@ public class EmployeeController {
 			return rr.findAll();
 		}
 	
-//    @PostMapping(value = "/numberTwoAPI")
-//	public Map<String, Object> numberTwoAPI(@RequestBody Map<String, Object> requests) throws Exception {
-//    System.out.println(requests);
-//	return requests;
-//}
+    @PostMapping(value = "/numberTwoAPI")
+	public Map<String, Object> numberTwoAPI(@RequestBody Map<String, Object> requests) throws Exception {
+    System.out.println(requests);
+	return requests;
+}
 
 }
