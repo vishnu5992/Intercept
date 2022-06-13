@@ -9,16 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.Request.Repository.RequestRepo;
 import com.example.Request.model.Employee;
+import com.example.Request.service.EmployeeService;
 
 
 @org.springframework.web.bind.annotation.RestController
 public class EmployeeController {
 	
 	@Autowired 
-	private RequestRepo rr;
+	private EmployeeService rr;
 		
 	@PostMapping("/emps")
 	public Employee addemp(@RequestBody Employee addemp) {
@@ -26,31 +28,24 @@ public class EmployeeController {
 		System.out.println(addemp.getName());
 		System.out.println(addemp.getRole());
 		System.out.println(addemp);
-		return rr.save(addemp);
+		return rr.addUser(addemp);
 	}
   
 	@PutMapping("/edit")
 	public Employee editemp(@RequestBody Employee editemp) {
 		System.out.println("Edited Sucessfully");
-		return rr.save(editemp);
+		return rr.editUser(editemp);
 	}
 	
 	@DeleteMapping("/deleteemp")
-	   public String deleteemp() {
-		String result = "";
-		try {
-			rr.deleteAll();
-			result = "All Employee records deleted sucessfully";
+	  public Employee removeEmp(@RequestBody Employee delemp) {
+		      rr.deleteUser(delemp);
+		      return delemp;	
 	}
-	catch(Exception e) {
-		result = "Error Ocurred";
-	}
-	return result;
-}
 	
 	@GetMapping("/getemp")
 		public List<Employee> getemp() {
-			return rr.findAll();
+			return rr.getUser();
 		}
 	
     @PostMapping(value = "/numberTwoAPI")
