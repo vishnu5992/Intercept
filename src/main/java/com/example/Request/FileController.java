@@ -31,7 +31,7 @@ public class FileController {
 	
 	@PostMapping("/processUpload")
 	public String processUpload(@RequestParam("file") MultipartFile file, Model model) throws IOException {
-		String content = file.getContentType();
+		byte[] content = file.getBytes();
 		String name = file.getOriginalFilename();
 		String fileType = file.getContentType();
 		FileModel filemodel  = new FileModel(0, content,name,fileType);
@@ -40,7 +40,7 @@ public class FileController {
 		return "Displayfiles";	
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity<String> getFile(@PathVariable int id) {
+	public ResponseEntity<byte[]> getFile(@PathVariable int id) {
 		FileModel fm = fsi.getFile(id);
 		HttpHeaders header = new HttpHeaders();
 		header.add(HttpHeaders.CONTENT_TYPE,fm.getFileType());

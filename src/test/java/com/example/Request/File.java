@@ -34,17 +34,18 @@ public class File {
 	@Test
 	public void fileGet() {
 		
-		when(repo.findAll()).thenReturn((List<FileModel>) Stream.of(new FileModel(1,"blob","apple","jpg")).collect(Collectors.toList()));
+		byte[] apple1 = null;
+		when(repo.findAll()).thenReturn((List<FileModel>) Stream.of(new FileModel(1,apple1,"apple","jpg")).collect(Collectors.toList()));
 		assertEquals(1,fsi.getAllFiles().size());
 
 		}
 	
 	@Test
 	public void saveFile() {
-		FileModel fm = new FileModel(2,"blob","orange","jpg");
+		byte[] content = null;
+		FileModel fm = new FileModel(2,content,"orange","jpg");
 		when(repo.save(fm)).thenReturn(fm);
 		assertEquals(fm,fsi.saveFiles(fm));
 	}
-	
 	
 }
