@@ -31,16 +31,16 @@ public class FileController {
 	
 	@PostMapping("/processUpload")
 	public String processUpload(@RequestParam("file") MultipartFile file, Model model) throws IOException {
-		byte[] content = file.getBytes();
+		String content = file.getContentType();
 		String name = file.getOriginalFilename();
 		String fileType = file.getContentType();
 		FileModel filemodel  = new FileModel(0, content,name,fileType);
-		fsi.saveFile(filemodel);
+		fsi.saveFiles(filemodel);
 		model.addAttribute("allFiles",fsi.getAllFiles());
 		return "Displayfiles";	
 	}
 	@GetMapping("/{id}")
-	public ResponseEntity<byte[]> getFile(@PathVariable int id) {
+	public ResponseEntity<String> getFile(@PathVariable int id) {
 		FileModel fm = fsi.getFile(id);
 		HttpHeaders header = new HttpHeaders();
 		header.add(HttpHeaders.CONTENT_TYPE,fm.getFileType());

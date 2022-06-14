@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.Request.model.FileModel;
 
 @Repository
-public interface FileRepository extends JpaRepository<FileModel,Long> {
+public interface FileRepository extends JpaRepository<FileModel, Integer> {
 
 	Optional<FileModel> findById(int id);
 

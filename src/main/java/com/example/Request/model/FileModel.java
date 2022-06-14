@@ -19,7 +19,7 @@ public class FileModel {
 	
 	@Column(name="content")
 	@Lob
-    private byte[] content;
+    private String content;
 	
 	@Column(name="name")
     private String name;
@@ -27,7 +27,7 @@ public class FileModel {
 	@Column(name="filetype")
     private String fileType;
 	
-	public FileModel(int id, byte[] content, String name, String fileType) {
+	public FileModel(int id, String content, String name, String fileType) {
 		super();
 		this.id = id;
 		this.content = content;
@@ -45,10 +45,10 @@ public class FileModel {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public byte[] getContent() {
+	public String getContent() {
 		return content;
 	}
-	public void setContent(byte[] content) {
+	public void setContent(String content) {
 		this.content = content;
 	}
 	public String getName() {

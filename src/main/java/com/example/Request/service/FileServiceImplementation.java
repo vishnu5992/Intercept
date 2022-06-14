@@ -15,8 +15,9 @@ public class FileServiceImplementation implements FileService{
 	@Autowired
 	private  FileRepository filerepo;
 	
-	public void saveFile(FileModel fileModel) {
-		filerepo.save(fileModel);
+	public FileModel saveFiles(FileModel fileModel) {
+	 return 	filerepo.save(fileModel);
+		
 	}
 	
 	public  List<FileModel> getAllFiles(){
